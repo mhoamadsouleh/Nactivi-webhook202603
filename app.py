@@ -18,8 +18,8 @@ _db_lock = threading.Lock()
 
 # ==================== إعدادات البوت ====================
 BOT_TOKEN = os.environ.get('BOT_TOKEN', '8668060570:AAEeED_4VOiyX82dhmaq0CjeE6A-iSHC4hc')
-WEBHOOK_URL = os.environ.get('WEBHOOK_URL', '')  # مثال: https://your-app.onrender.com
-ADMIN_SECRET = os.environ.get('ADMIN_SECRET', 'nactivi_admin_2025')  # كلمة سر لوحة التحكم
+WEBHOOK_URL = os.environ.get('WEBHOOK_URL', 'https://nactivi-webhook202603-3.onrender.com')  # مثال: https://your-app.onrender.com
+ADMIN_SECRET = os.environ.get('ADMIN_SECRET', 'Nactividzd')  # كلمة سر لوحة التحكم
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
