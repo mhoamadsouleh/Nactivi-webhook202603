@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Bot Menu</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;900&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: #17212b;
+    color: #fff;
+    padding: 12px 10px 30px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    padding: 14px 10px 16px;
+  }
+  .header h1 { font-size: 17px; font-weight: 900; color: #fff; }
+  .header p  { font-size: 12px; color: #8a9bb0; margin-top: 3px; }
+
+  /* ===== STATS ===== */
+  .stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .stat {
+    flex: 1;
+    background: #232e3c;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .stat-val { font-size: 18px; font-weight: 900; color: #fff; }
+  .stat-lbl { font-size: 11px; color: #8a9bb0; margin-top: 2px; }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: filter .12s, transform .1s;
+  }
+  .btn:active { transform: scale(0.97); filter: brightness(0.85); }
+
+  .row { display: flex; gap: 8px; }
+  .row .btn { flex: 1; font-size: 13px; }
+
+  /* نفس ألوان طلباتي */
+  .btn-green  { background: #2da649; }  /* أخضر كبير */
+  .btn-blue   { background: #2b5278; }  /* أزرق داكن */
+  .btn-red    { background: #c0392b; }  /* أحمر */
+  .btn-gray   { background: #232e3c; border: 1px solid #2b3a4a; } /* رمادي */
+
+  /* زر أخضر كبير مميز */
+  .btn-green-lg {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(46,204,113,0.3);
+  }
+
+  /* زر أحمر مميز */
+  .btn-red-lg {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    box-shadow: 0 4px 15px rgba(231,76,60,0.25);
+  }
+
+  .divider { margin: 4px 0 12px; border: none; border-top: 1px solid #2b3a4a; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1 id="bot-name">🤖 اسم البوت</h1>
+  <p id="bot-desc">وصف البوت</p>
+</div>
+
+<!-- إحصائيات -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-val" id="s1">0</div>
+    <div class="stat-lbl">💎 نقاطك</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" id="s2">0</div>
+    <div class="stat-lbl">🎁 مجاني</div>
+  </div>
+</div>
+
+<!-- زر أخضر كبير (مثل "الخدمات" في طلباتي) -->
+<button class="btn btn-green btn-green-lg" onclick="send('main_service')">
+  🛒 الخدمات
+</button>
+
+<!-- أزرار زرقاء -->
+<button class="btn btn-blue" onclick="send('fund_channel')">
+  👤 تمويل قناتك
+</button>
+
+<div class="row">
+  <button class="btn btn-blue" onclick="send('collect_points')">💎 تجميع نقاط</button>
+  <button class="btn btn-blue" onclick="send('transfer_points')">🔄 تحويل نقاط</button>
+</div>
+
+<div class="row">
+  <button class="btn btn-blue" onclick="send('account')">🗂️ الحساب</button>
+  <button class="btn btn-blue" onclick="send('use_code')">📦 استخدام كود</button>
+</div>
+
+<div class="row">
+  <button class="btn btn-blue" onclick="send('my_orders')">📅 طلباتي</button>
+  <button class="btn btn-blue" onclick="send('check_order')">🔎 فحص الطلب</button>
+</div>
+
+<div class="row">
+  <button class="btn btn-blue" onclick="send('complete_orders')">📊 اكتمال الطلبات</button>
+  <button class="btn btn-blue" onclick="send('charge_points')">💵 شحن نقاط</button>
+</div>
+
+<div class="row">
+  <!-- زر أحمر (مثل "شروط الاستخدام") -->
+  <button class="btn btn-red btn-red-lg" onclick="send('terms')">⚠️ شروط الاستخدام</button>
+  <button class="btn btn-blue" onclick="send('bot_updates')">🔧 تحديثات البوت</button>
+</div>
+
+<hr class="divider">
+
+<!-- زر ذهبي -->
+<button class="btn btn-blue" onclick="send('prizes')">
+  ⭐ نجوم 🎁 جوائز 💰 رصيد 🔢 أرقام
+</button>
+
+<!-- زر أخضر سفلي (مثل "طلبات انجزناها") -->
+<button class="btn btn-green btn-green-lg" onclick="send('completed')">
+  🛡️ طلبات انجزناها 2,603,597 طلب
+</button>
+
+<script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
+  // استقبال بيانات من البوت
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('name')) document.getElementById('bot-name').textContent = p.get('name');
+  if (p.get('desc')) document.getElementById('bot-desc').textContent = p.get('desc');
+  document.getElementById('s1').textContent = p.get('pts')  || '0';
+  document.getElementById('s2').textContent = p.get('free') || '0';
+
+  function send(action) {
+    tg.sendData(JSON.stringify({ action }));
+  }
+</script>
+</body>
+</html>
